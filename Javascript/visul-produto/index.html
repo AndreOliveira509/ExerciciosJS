@@ -36,6 +36,10 @@
             width: 180px;
             opacity: 0.5;
         }
+
+        #imgs .strong {
+            opacity: 1;
+        }
     </style>
     <script>
         foto1g = new Image()
@@ -53,14 +57,19 @@
         foto5g = new Image()
         foto5g.src = "img/porta-aberta.webp"
 
+
         function trocar(caminho) {
             document.getElementById('centro').src = caminho
         }
-        function entrar(element) {
+
+        function destaque(element) {
+            var imagens = document.querySelectorAll('#imgs img');
+            for (var i = 0; i < imagens.length; i++) {
+                imagens[i].classList.remove('strong');
+                imagens[i].style.opacity = 0.5;
+            }
+            element.classList.add('strong');
             element.style.opacity = 1;
-        }
-        function sair(element) {
-            element.style.opacity = 0.5;
         }
     </script>
 </head>
@@ -71,20 +80,20 @@
         <div id="img-container">
             <img src="img/foto-princ.webp" id="centro">
             <div id="imgs">
-                <a href="#" onclick="trocar(foto1g.src)">
-                    <img src="img/foto-princ.webp" onmouseenter="entrar(this)" onmouseout="sair(this)">
+                <a href="#" onclick="trocar(foto1g.src); destaque(this.firstElementChild)">
+                    <img src="img/foto-princ.webp" class="strong">
                 </a>
-                <a href="#" onclick="trocar(foto3g.src)">
-                    <img src="img/frente.webp" onmouseenter="entrar(this)" onmouseout="sair(this)">
+                <a href="#" onclick="trocar(foto3g.src); destaque(this.firstElementChild)">
+                    <img src="img/frente.webp">
                 </a>
-                <a href="#" onclick="trocar(foto2g.src)">
-                    <img src="img/foto-lado.webp" onmouseenter="entrar(this)" onmouseout="sair(this)">
+                <a href="#" onclick="trocar(foto2g.src); destaque(this.firstElementChild)">
+                    <img src="img/foto-lado.webp">
                 </a>
-                <a href="#" onclick="trocar(foto5g.src)">
-                    <img src="img/porta-aberta.webp" onmouseenter="entrar(this)" onmouseout="sair(this)">
+                <a href="#" onclick="trocar(foto5g.src); destaque(this.firstElementChild)">
+                    <img src="img/porta-aberta.webp">
                 </a>
-                <a href="#" onclick="trocar(foto4g.src)">
-                    <img src="img/traseira.webp" onmouseenter="entrar(this)" onmouseout="sair(this)">
+                <a href="#" onclick="trocar(foto4g.src); destaque(this.firstElementChild)">
+                    <img src="img/traseira.webp">
                 </a>
             </div>
         </div>
