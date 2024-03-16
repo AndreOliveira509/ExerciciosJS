@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num = Math.round(Math.random() * (5-1)) + 1;
+        var materia = []
+        var texto = []
+
+        materia[0]="img/edfisica.jpg";
+        materia[1]="img/biologia.png";
+        materia[2]="img/geografia.jpg";
+        materia[3]="img/historia.jpg";
+        materia[4]="img/mat.jpg";
+        materia[5]="img/port.jpg";
+        
+        var vismateria = materia[num];
+        document.write("<center><b>Use o f5</b></center><br><br>");
+        document.write("<img src='"+vismateria+"'>");
+        
+    </script>
+</body>
+</html>

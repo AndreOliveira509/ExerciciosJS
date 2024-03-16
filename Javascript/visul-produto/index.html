@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 3em;
+
+        }
+
+        #img-container {
+            width: 50%;
+        }
+
+        #img-container img {
+            width: 100%;
+        }
+
+        #imgs {
+            width: 100%;
+        }
+
+        #imgs img {
+            width: 180px;
+            opacity: 0.5;
+        }
+    </style>
+    <script>
+        foto1g = new Image()
+        foto1g.src = "img/foto-princ.webp"
+
+        foto2g = new Image()
+        foto2g.src = "img/foto-lado.webp"
+
+        foto3g = new Image()
+        foto3g.src = "img/frente.webp"
+
+        foto4g = new Image()
+        foto4g.src = "img/traseira.webp"
+
+        foto5g = new Image()
+        foto5g.src = "img/porta-aberta.webp"
+
+        function trocar(caminho) {
+            document.getElementById('centro').src = caminho
+        }
+        function entrar(element) {
+            element.style.opacity = 1;
+        }
+        function sair(element) {
+            element.style.opacity = 0.5;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Mc laren</h1>
+        <div id="img-container">
+            <img src="img/foto-princ.webp" id="centro">
+            <div id="imgs">
+                <a href="#" onclick="trocar(foto1g.src)">
+                    <img src="img/foto-princ.webp" onmouseenter="entrar(this)" onmouseout="sair(this)">
+                </a>
+                <a href="#" onclick="trocar(foto3g.src)">
+                    <img src="img/frente.webp" onmouseenter="entrar(this)" onmouseout="sair(this)">
+                </a>
+                <a href="#" onclick="trocar(foto2g.src)">
+                    <img src="img/foto-lado.webp" onmouseenter="entrar(this)" onmouseout="sair(this)">
+                </a>
+                <a href="#" onclick="trocar(foto5g.src)">
+                    <img src="img/porta-aberta.webp" onmouseenter="entrar(this)" onmouseout="sair(this)">
+                </a>
+                <a href="#" onclick="trocar(foto4g.src)">
+                    <img src="img/traseira.webp" onmouseenter="entrar(this)" onmouseout="sair(this)">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

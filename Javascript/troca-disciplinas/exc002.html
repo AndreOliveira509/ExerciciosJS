@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num = Math.round(Math.random() * (5-1)) + 1;
+        var materia = [
+
+            "img/edfisica.jpg",
+            "img/biologia.png",
+            "img/geografia.jpg",
+            "img/historia.jpg",
+            "img/mat.jpg",
+            "img/port.jpg"
+
+        ]
+        var texto = [
+
+            "Edudacação Fisica",
+            "Biografia", 
+            "Geografia",
+            "História", 
+            "Matematica",
+            "Portugues",
+        
+        ]
+
+        var vismateria = materia[num];
+        var vistexto = texto[num];
+        document.write("<center><b>Use o f5</b></center><br><br>");
+        document.write("<b>"+vistexto+"</b><br><br>");
+        document.write("<img src='"+vismateria+"'>");
+        
+    </script>
+</body>
+</html>
