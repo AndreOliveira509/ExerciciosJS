@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leitura de JSON em JavaScript</title>
+</head>
+<body>
+    <!-- <forms id="mainform">
+        <p>
+            <label for="inome">Nome:</label>
+            <input type="text" name="name" id="iname" required maxlength="30" placeholder="Nome Completo" autocomplete="name">
+        </p>
+        <p>
+            <label for="iemail">Email:</label>
+            <input type="email" name="email" id="iemail" required autocomplete="email" placeholder="Digite seu email">
+        </p>
+        <p>
+            <label for="iidd">Idade: </label>
+            <input type="number" name="idd" id="iidd" placeholder="Digite sua idade" >
+        </p>
+    </forms> -->
+    <forms id="searchform">
+        <p>
+            <label for="searchname">Pesquisar Nome:</label>
+            <input type="text" id="searchname" placeholder="Nome">
+        </p>
+        <p>
+            <label for="searchemail">Pesquisar Email:</label>
+            <input type="email" id="searchemail" placeholder="Email">
+        </p>
+        <p>
+            <label for="searchidd">Pesquisar Idade:</label>
+            <input type="number" id="searchidd" placeholder="Idade">
+        </p>
+        <button type="button" onclick="pesquisar_dados()">Pesquisar</button>
+    </forms>
+    <div id="resultados">
+        <!-- Os resultados aparecerão aqui -->
+    </div>
+    <script>
+        // Função para ler o arquivo JSON
+        let usuarios = [];
+
+        async function lerJSON() {
+            try {
+                // Usando fetch para carregar o arquivo JSON
+                const response = await fetch('usuarios.json');
+                
+                // Verifica se a resposta foi bem-sucedida
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar o arquivo JSON: ' + response.statusText);
+                }
+
+                // Converte a resposta para JSON
+                const data = await response.json();
+                usuarios = data;
+                // Processa os dados
+                console.log(data);
+
+                // Você pode manipular os dados aqui
+                data.forEach(usuario => {
+                    console.log('Nome:', usuario.nome);
+                    console.log('Idade:', usuario.idade);
+                    console.log('Email:', usuario.email);
+                    usuario.enderecos.forEach(endereco => {
+                        console.log('Endereço:', endereco.rua, endereco.numero, endereco.cidade, endereco.estado, endereco.cep);
+                    });
+                    usuario.telefones.forEach(telefone => {
+                        console.log('Telefone:', telefone.tipo, telefone.numero);
+                    });
+                    console.log('---');
+                });
+            } catch (error) {
+                console.error('Erro ao ler o arquivo JSON:', error);
+            }
+        }
+
+        // Chama a função para ler o JSON
+        function pesquisar_dados() {
+            const nome = document.getElementById('searchname').value.toLowerCase();
+            const email = document.getElementById('searchemail').value.toLowerCase();
+            const idade = document.getElementById('searchidd').value;
+            
+            const filtragem = usuarios.filter(usuario => {
+                return (
+                    (!nome || usuario.nome.toLowerCase().includes(nome)) &&
+                    (!email || usuario.email.toLowerCase().includes(email)) &&
+                    (!idade || usuario.idade == idade)
+                );
+            });
+            exibir_resultados(filtragem);
+        }
+        function exibir_resultados(resultados) {
+            const divResultados = document.getElementById('resultados');
+            divResultados.innerHTML = ''; // limpa os resultados anteriores
+            
+            if (resultados.length > 0) {
+                resultados.forEach(usuario => {
+                    const usuarioDiv = document.createElement('div');
+                    usuarioDiv.innerHTML = `
+                    <p><strong>Nome:</strong> ${usuario.nome}</p>
+                    <p><strong>Email:</strong> ${usuario.email}</p>
+                    <p><strong>Idade:</strong> ${usuario.idade}</p>
+                    <hr>
+                    `;
+                    divResultados.appendChild(usuarioDiv)
+                });
+            } else {
+                divResultados.innerHTML = '<p>Nenhum resultado encontrado.</p>'
+            }
+        }
+        lerJSON();
+        </script>
+</body>
+</html>
